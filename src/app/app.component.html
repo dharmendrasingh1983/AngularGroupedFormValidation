@@ -1,9 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h3>
-    Welcome to {{ title }}!
-  </h3>
-</div>
-<ul>   
-  <app-main-component></app-main-component>
+<mat-toolbar>
+  <span> Welcome to {{ title }}!</span> &nbsp;
+  <mat-button-toggle-group name="ngforms">
+    <mat-button-toggle value="bold" (click)="selectMenu('Reactive')">Reactive Form</mat-button-toggle>
+    <mat-button-toggle value="italic" (click)="selectMenu('Template')">Template Form</mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-toolbar>
+<ul>
+  <router-outlet></router-outlet> 
 </ul>

@@ -10,13 +10,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatCardModule, MatSelectModule } from '@angular/material';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatCardModule, MatSelectModule, MatToolbarModule, MatButtonToggleModule } from '@angular/material';
+import { TemplateFormComponentComponent } from './components/template-form-component/template-form-component.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'reactiveform', component: MainComponentComponent },
+  { path: 'templateform', component: TemplateFormComponentComponent },
+  { path: '', redirectTo: '/reactiveform', pathMatch: 'full' },
+  { path: '**', redirectTo: '/reactiveform', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponentComponent,
-    ChildComponentComponent
+    ChildComponentComponent,
+    TemplateFormComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +40,10 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule, MatCardMo
     MatDialogModule,
     MatButtonModule,
     MatCardModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
+    RouterModule.forRoot(routes)
   ],
   entryComponents: [ChildComponentComponent],
   providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
