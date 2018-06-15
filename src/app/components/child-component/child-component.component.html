@@ -1,0 +1,17 @@
+
+<h2 mat-dialog-title>Hello</h2>
+
+<mat-dialog-content>
+  
+<div>
+    {{formData | json}}
+</div>
+     
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <a mat-button title="Download JSON" [href]="downloadJsonHref" download="download.json">Download Json</a>
+</mat-dialog-actions>
+

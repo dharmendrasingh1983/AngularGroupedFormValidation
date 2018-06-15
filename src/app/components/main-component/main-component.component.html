@@ -1,0 +1,68 @@
+<mat-card>
+  <form (ngSubmit)="onSubmit(itmeForm)" [formGroup]="itmeForm">
+    <mat-card-content>
+      <mat-accordion>
+
+        <ng-container *ngFor="let item of componentData">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header color="primary">
+              <mat-panel-title>
+                {{item.title}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div [formGroupName]="item.groupName">
+              <ng-container *ngFor="let clildItem of item.componentItems">
+                <ng-container [ngSwitch]="clildItem.type">
+
+                  <mat-form-field *ngSwitchCase="'string'">
+                    <input matInput [placeholder]="clildItem.title" [formControlName]="clildItem.name">
+                    <mat-error *ngIf="itmeForm.controls[item.groupName].controls[clildItem.name].errors?.required">
+                      {{clildItem.title}} is
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field *ngSwitchCase="'integer'">
+                    <input matInput [placeholder]="clildItem.title" [formControlName]="clildItem.name" type="number">
+                    <mat-error *ngIf="itmeForm.controls[item.groupName].controls[clildItem.name].errors?.required">
+                      {{clildItem.title}} is
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field *ngSwitchCase="'dropdown'">
+                    <mat-select [placeholder]="clildItem.title" [formControlName]="clildItem.name">
+                      <mat-option *ngFor="let seopt of clildItem.options" [value]="seopt.key">
+                            {{ seopt.value }}
+                          </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="itmeForm.controls[item.groupName].controls[clildItem.name].errors?.required">
+                      {{clildItem.title}} is
+                      <strong>required</strong>
+                    </mat-error>
+
+                  </mat-form-field>
+
+                  <mat-form-field *ngSwitchCase="'password'">
+                    <input matInput [placeholder]="clildItem.title" [formControlName]="clildItem.name" type="password">
+
+                    <mat-error *ngIf="itmeForm.controls[item.groupName].controls[clildItem.name].errors?.required">
+                      {{clildItem.title}} is
+                      <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+
+                </ng-container>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+
+      </mat-accordion>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
