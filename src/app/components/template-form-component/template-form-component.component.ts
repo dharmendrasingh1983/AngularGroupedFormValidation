@@ -86,4 +86,5 @@ export class TemplateFormComponentComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal = result;
     });
+  }
 }
